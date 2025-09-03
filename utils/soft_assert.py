@@ -12,3 +12,5 @@ class SoftAssert:
         """Cuối test gọi để tổng hợp lỗi"""
         if self._errors:
             errors = "\n".join(f"- {e}" for e in self._errors)
+            raise AssertionError(f"\nSoft assert failures:\n{errors}")
+

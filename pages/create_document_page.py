@@ -46,7 +46,7 @@ class CreateDocumentPage:
     def check_text_in_element(self,text,el):
         element = wait_for_visible(self.driver, el)
         text_element = element.text or element.get_attribute("value")
-        print(f"Text in el là {text_element}")
+        print(f"Text in el là {text_element} "+ str(text_element == text)   )
         return text_element == text
 
     def click_dropdown(self, dropdown_locator: tuple):

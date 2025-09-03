@@ -35,9 +35,9 @@ class TestCreateDocumentPage:
 
         soft.check(create_page.check_text_in_element("", create_page.han_xu_ly), "Defaul Hạn xử lý không trống")
 
-        soft.check(create_page.check_text_in_element("Chưa chọn",create_page.loai_van_ban_dropdown)," Default loại văn bản không là 'Chưa chọn'")
+        soft.check(create_page.check_text_in_element("Chưa chọ",create_page.loai_van_ban_dropdown)," Default loại văn bản không là 'Chưa chọn'")
 
-        soft.check(create_page.check_text_in_element("Thường",create_page.do_khan_dropdown), "Default độ khẩn không là 'Thường' ")
+        soft.check(create_page.check_text_in_element("Thườn",create_page.do_khan_dropdown), "Default độ khẩn không là 'Thường' ")
 
         soft.check(create_page.check_text_in_element("",create_page.linh_vuc_dropdown), "Defaul Lĩnh vực không trống")
 
