@@ -1,3 +1,4 @@
+from selenium.common import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -17,12 +18,27 @@ class HomePage:
         self.menu_quan_tri_he_thong = (By.ID, "m1846")
         self.menu_khai_bao_tham_so_he_thong = (By.ID, "m1852")
         self.menu_create_document = (By.ID,"createVanBanMenu")
+        self.menu_van_ban_di = (By.ID, "m2793")
+        self.menu_van_ban_di_can_xu_ly = (By.ID, "m2795")
+        self.btn_search_VB = (By.ID, "vbdi_btnSearchVB")
+        self.input_search_VB = (By.ID, "txtname")
+
 
     def is_loaded(self):
         """Kiểm tra đã vào trang chủ"""
         header = wait_for_visible(self.driver, self.header)
         return "Trang chủ" in header.text
 
+    def check_text_visible(self,driver, expected_text, timeout=30):
+        try:
+            # chỉ lấy td hiển thị (không có display:none)
+            xpath = f"//td[not(contains(@style,'display: none'))]//*[contains(normalize-space(.), \"{expected_text}\")]"
+            elem = wait_for_visible(driver, (By.XPATH, xpath), timeout)
+            print(f" Tìm thấy text hiển thị: {elem.text}")
+            return True
+        except TimeoutException:
+            print(f" Không tìm thấy text hiển thị: {expected_text}")
+            return False
     def switch_account(self, account_name):
         str_name = self.driver.find_element(*self.span_full_name_home_page).text.strip()
         if account_name != str_name:
